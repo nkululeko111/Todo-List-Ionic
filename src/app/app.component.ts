@@ -26,13 +26,13 @@ import { MatInputModule } from '@angular/material/input';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent {
-  title!: string;
-  description!: string;
+  title = '';
+  description = '';
 
   constructor(private taskService: TaskService) { }
 
   addTask(): void {
-    if (this.title) {
+    if (this.title.trim()) {
       this.taskService.addTask(this.title, this.description);
       this.title = '';
       this.description = '';

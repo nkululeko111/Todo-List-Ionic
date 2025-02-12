@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { TaskService, Task } from '../../services/task.service';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -19,18 +19,23 @@ import { IonicModule } from '@ionic/angular';
 })
 export class TaskListComponent implements OnInit {
   tasks: Task[] = [];
-
-  constructor(private taskService: TaskService) { }
+  private taskService = inject(TaskService);
 
   ngOnInit() {
+    this.loadTasks();
+  }
+
+  loadTasks() {
     this.tasks = this.taskService.getTasks();
   }
 
   completeTask(id: number): void {
     this.taskService.completeTask(id);
+    this.loadTasks();
   }
 
   deleteTask(id: number): void {
     this.taskService.deleteTask(id);
+    this.loadTasks();
   }
 }
