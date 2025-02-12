@@ -1,3 +1,18 @@
-<ion-app>
-  <ion-router-outlet></ion-router-outlet>
-</ion-app>
+<ion-header>
+  <ion-toolbar>
+    <ion-title>ToDo List</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label position="floating">Task Title</ion-label>
+    <ion-input [(ngModel)]="title"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label position="floating">Task Description</ion-label>
+    <ion-textarea [(ngModel)]="description"></ion-textarea>
+  </ion-item>
+  <ion-button expand="full" (click)="addTask()">Add Task</ion-button>
+
+  <app-task-list></app-task-list>
+</ion-content>
